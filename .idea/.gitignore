@@ -15,3 +15,9 @@ hs_err_pid*
 /dataSources.local.xml
 # Editor-based HTTP Client requests
 /httpRequests/
+out/
+.idea/
+.idea_modules/
+*.iml
+*.ipr
+*.iws
