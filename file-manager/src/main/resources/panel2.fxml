@@ -1,0 +1,19 @@
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.TextField?>
+<VBox fx:controller="com.timal.UI.PanelControllerServer"
+      xmlns:fx="http://javafx.com/fxml" alignment="center" >
+
+    <HBox>
+
+        <TextField fx:id="pathField" HBox.hgrow="ALWAYS" editable="false" />
+        <Button text="Up" onAction="#btnPathUpAction"/>
+    </HBox>
+    <TableView fx:id="filesTable" VBox.vgrow="ALWAYS"/>
+
+    <properties>
+        <ctrl><fx:reference source="controller"/></ctrl>
+    </properties>
+</VBox>

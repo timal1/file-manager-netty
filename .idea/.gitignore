@@ -1,0 +1,17 @@
+# Default ignored files
+/shelf/
+/workspace.xml
+/server-netty/target/
+/file-manager/target/
+.mtj.tmp/
+*.class
+*.jar
+*.war
+*.ear
+*.nar
+hs_err_pid*
+# Datasource local storage ignored files
+/dataSources/
+/dataSources.local.xml
+# Editor-based HTTP Client requests
+/httpRequests/
