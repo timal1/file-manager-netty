@@ -202,7 +202,6 @@
             <children>
                 <MenuBar>
                     <Menu text="Menu">
-                        <MenuItem text="Change Nick"/>
                         <MenuItem text="Exit from program" onAction="#btnExitAction"/>
                     </Menu>
                 </MenuBar>

@@ -102,7 +102,8 @@ public class FileHandler {
                     partsCount++;
                 }
 
-                FileSendMessage fmOut = new FileSendMessage(file.getName(), -1, partsCount, new byte[bufSize], nameServerPCPath, nameClientPcPath, labelRemoveFile);
+                FileSendMessage fmOut = new FileSendMessage(file.getName(), -1, partsCount,
+                        new byte[bufSize], nameServerPCPath, nameClientPcPath, labelRemoveFile);
                 FileInputStream in = new FileInputStream(file);
 
                 for (int i = 0; i < partsCount; i++) {
@@ -141,7 +142,7 @@ public class FileHandler {
         String nameDelFile = deleteFileRequest.getNameFile();
         String pathFileDelete = deleteFileRequest.getNamePathServerPC();
         try {
-            Files.delete(Paths.get(pathFileDelete + "\\" + nameDelFile));
+            Files.delete(Paths.get(pathFileDelete, nameDelFile));
             log.info("User " + userName + " remove file " + nameDelFile);
             ctx.writeAndFlush(new FilesSizeRequestMessage(filesInformService.getFilesSize(userName),
                     filesInformService.getListFiles(pathFileDelete), pathFileDelete));

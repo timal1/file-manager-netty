@@ -27,7 +27,7 @@ public class FilesInformService {
 
     public long getFilesSize(String nameUser) throws IOException {
         if (nameUser != null) {
-            Path path = Paths.get(pathMain + nameUser);
+            Path path = Paths.get(pathMain, nameUser);
 
             if (!Files.exists(path)) {
                 Files.createDirectory(path);
@@ -42,7 +42,7 @@ public class FilesInformService {
 
             for (FileInfoMessage fileInfoMessage : fileInfoMessages) {
                 if (fileInfoMessage.getType().equals(FileInfoMessage.FileType.DIRECTORY)) {
-                    Path pathFile = Paths.get(pathMain + nameUser + "/" + fileInfoMessage.getFilename());
+                    Path pathFile = Paths.get(pathMain, nameUser, fileInfoMessage.getFilename());
                     size += Files.list(pathFile)
                             .map((p) -> p.toFile()
                                     .length())
