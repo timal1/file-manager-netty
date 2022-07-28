@@ -46,7 +46,8 @@ public class AuthHandler {
             }
             log.info("Authorization was completed successfully and a list of files was sent to the client");
         } else {
-            ctx.writeAndFlush(new AuthMessage("none", null, ""));
+            AuthMessage authMessage = new AuthMessage("none", null, "");
+            ctx.writeAndFlush(authMessage);
             log.info("Authorization was not completed.");
         }
     }

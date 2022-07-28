@@ -10,6 +10,7 @@ import lombok.SneakyThrows;
 import lombok.extern.log4j.Log4j2;
 
 import java.io.FileOutputStream;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 
 @Log4j2
@@ -54,7 +55,8 @@ public class FileHandler {
             ctx.writeAndFlush(new FilesSizeRequestMessage(1, fileSendMessage.nameServerPCPath));
             Platform.runLater(() -> {
                 controller.setVisibleLoadInfoFile(false);
-                controller.getClientPC().updateList(Paths.get(fileSendMessage.nameClientPcPath));
+                Path path = Paths.get(fileSendMessage.nameClientPcPath);
+                controller.getClientPC().updateList(path);
             });
         }
     }

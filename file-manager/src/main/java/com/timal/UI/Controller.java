@@ -163,7 +163,8 @@ public class Controller implements Initializable {
             regMessage.setVisible(true);
         } else {
             userName = regLogin.getText();
-            network.send(new RegisterMessage(regName.getText(), regLogin.getText(), regPassword.getText()));
+            RegisterMessage registerMessage = new RegisterMessage(regName.getText(), regLogin.getText(), regPassword.getText());
+            network.send(registerMessage);
         }
     }
 
@@ -269,7 +270,8 @@ public class Controller implements Initializable {
         if (serverPC.getSelectedFileNameServer() != null) {
             String namePathServerPC = Paths.get(serverPC.getCurrentPath()).toString();
             String deleteFileName = serverPC.getSelectedFileNameServer();
-            network.send(new DelFileRequestMessage(deleteFileName, namePathServerPC));
+            DelFileRequestMessage delFileRequestMessage = new DelFileRequestMessage(deleteFileName, namePathServerPC);
+            network.send(delFileRequestMessage);
         }
     }
 

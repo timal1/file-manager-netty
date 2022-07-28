@@ -120,7 +120,10 @@ public class PanelController implements Initializable {
         filesTable.getItems().clear();
         try {
             pathField.setText(path.normalize().toAbsolutePath().toString());
-            filesTable.getItems().addAll(Files.list(path).map(FileInfoMessage::new).collect(Collectors.toList()));
+            filesTable.getItems()
+                    .addAll(Files.list(path)
+                            .map(FileInfoMessage::new)
+                            .collect(Collectors.toList()));
             filesTable.sort();
         } catch (IOException e) {
             Alert alert = new Alert(Alert.AlertType.WARNING, "For some reason no updates list files", ButtonType.OK);

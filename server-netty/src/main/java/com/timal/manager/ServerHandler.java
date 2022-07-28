@@ -43,8 +43,13 @@ public class ServerHandler extends ChannelInboundHandlerAdapter {
 
     @Override
     public void channelActive(ChannelHandlerContext ctx) {
-        log.info("User connected." + ctx);
+        log.info("User " + userName + " connected..." + ctx);
         filesInformService = new FilesInformService();
+    }
+
+    @Override
+    public void channelInactive(ChannelHandlerContext ctx) {
+        log.info("User " + userName + " disconnected..." + ctx);
     }
 
     @Override

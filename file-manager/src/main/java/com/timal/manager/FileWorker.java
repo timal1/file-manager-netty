@@ -86,7 +86,8 @@ public class FileWorker {
 
                 }
                 log.info("Фаил: " + file.getName() + " отправлен полностью");
-                ChannelFuture f = network.send(new FilesSizeRequestMessage(1, nameServerPCPath));
+                FilesSizeRequestMessage filesSizeRequestMessage = new FilesSizeRequestMessage(1, nameServerPCPath);
+                ChannelFuture f = network.send(filesSizeRequestMessage);
                 f.sync();
                 in.close();
                 Platform.runLater(() -> {

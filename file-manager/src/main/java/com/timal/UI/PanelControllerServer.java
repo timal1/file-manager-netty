@@ -83,7 +83,8 @@ public class PanelControllerServer implements Initializable {
                     FileInfoMessage.FileType fileType = filesTable.getSelectionModel().getSelectedItem().getType();
                     String filePath = filesTable.getSelectionModel().getSelectedItem().getPath();
                     if (fileType.equals(FileInfoMessage.FileType.DIRECTORY)) {
-                        network.send(new FileListMessage(filePath));
+                        FileListMessage fileListMessage = new FileListMessage(filePath);
+                        network.send(fileListMessage);
                     }
                 }
             }
@@ -95,7 +96,8 @@ public class PanelControllerServer implements Initializable {
         Path upperPath = Paths.get(pathField.getText()).getParent();
         if (upperPath != null) {
 
-            network.send(new FileListMessage(upperPath.toString()));
+            FileListMessage fileListMessage = new FileListMessage(upperPath.toString());
+            network.send(fileListMessage);
         }
     }
 

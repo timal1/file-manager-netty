@@ -62,8 +62,10 @@ public class FileHandler {
                 log.info("File full get");
 
                 if (fileSendMessage.labelRemoveFile) {
-                    ctx.writeAndFlush(new DelFileRequestMessage(fileSendMessage.filename,
-                            fileSendMessage.nameClientPcPath));
+                    DelFileRequestMessage delFileRequestMessage =
+                            new DelFileRequestMessage(fileSendMessage.filename,
+                            fileSendMessage.nameClientPcPath);
+                    ctx.writeAndFlush(delFileRequestMessage);
                 }
             }
 
@@ -119,8 +121,10 @@ public class FileHandler {
                 }
 
                 in.close();
-                ChannelFuture future = ctx.writeAndFlush(new FilesSizeRequestMessage(filesInformService.getFilesSize(userName),
-                        filesInformService.getListFiles(nameServerPCPath), frMsg.getNameServerPCPath()));
+                FilesSizeRequestMessage filesSizeRequestMessage =
+                        new FilesSizeRequestMessage(filesInformService.getFilesSize(userName),
+                        filesInformService.getListFiles(nameServerPCPath), frMsg.getNameServerPCPath());
+                ChannelFuture future = ctx.writeAndFlush(filesSizeRequestMessage);
                 future.sync();
 
             } catch (Exception e) {
@@ -144,8 +148,10 @@ public class FileHandler {
         try {
             Files.delete(Paths.get(pathFileDelete, nameDelFile));
             log.info("User " + userName + " remove file " + nameDelFile);
-            ctx.writeAndFlush(new FilesSizeRequestMessage(filesInformService.getFilesSize(userName),
-                    filesInformService.getListFiles(pathFileDelete), pathFileDelete));
+            FilesSizeRequestMessage filesSizeRequestMessage =
+                    new FilesSizeRequestMessage(filesInformService.getFilesSize(userName),
+                            filesInformService.getListFiles(pathFileDelete), pathFileDelete);
+            ctx.writeAndFlush(filesSizeRequestMessage);
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -14,9 +14,6 @@ public class FilesSizeHandler {
     private Controller controller;
     private boolean check;
     private double percentProgressBar;
-    private double partsCount;
-    private double partNumber;
-    private String pathName;
 
     public FilesSizeHandler(Controller controller) {
         this.controller = controller;
@@ -28,15 +25,15 @@ public class FilesSizeHandler {
         FilesSizeRequestMessage filesObj = (FilesSizeRequestMessage) msg;
         double filesSize = (double) filesObj.getFilesSize() / 1024 / 1024 / 1024;
         List<FileInfoMessage> listFiles = filesObj.getListFiles();
-        partsCount = filesObj.getPartsCount();
-        partNumber = filesObj.getPartNumber();
+        double partsCount = filesObj.getPartsCount();
+        double partNumber = filesObj.getPartNumber();
 
         if (partsCount != partNumber) {
             percentProgressBar = (1 / partsCount) * partNumber;
             check = true;
         } else { check = false;}
 
-        pathName = controller.getServerPC().getPathNameGetFromServer();
+        String pathName = controller.getServerPC().getPathNameGetFromServer();
 
         Platform.runLater(() -> {
             controller.changeLoadBar(filesSize);

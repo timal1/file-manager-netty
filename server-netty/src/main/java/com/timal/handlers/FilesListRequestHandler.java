@@ -22,7 +22,7 @@ public class FilesListRequestHandler {
 
     @SneakyThrows
     public void filesListHandle(ChannelHandlerContext ctx, Object msg) {
-        FilesSizeRequestMessage filesSizeRequestMessage = (FilesSizeRequestMessage)msg;
+        FilesSizeRequestMessage filesSizeRequestMessageIn = (FilesSizeRequestMessage)msg;
         String userName = serverHandler.isChanelBusy(ctx);
 
         if (userName == null) {
@@ -30,9 +30,11 @@ public class FilesListRequestHandler {
             return;
         }
 
-            ctx.writeAndFlush(new FilesSizeRequestMessage(filesInformService.getFilesSize(userName),
-                    filesInformService.getListFiles(filesSizeRequestMessage.getPathServerPcName()),
-                    filesSizeRequestMessage.getPathServerPcName()));
+        FilesSizeRequestMessage filesSizeRequestMessageOut =
+                new FilesSizeRequestMessage(filesInformService.getFilesSize(userName),
+                        filesInformService.getListFiles(filesSizeRequestMessageIn.getPathServerPcName()),
+                        filesSizeRequestMessageIn.getPathServerPcName());
+            ctx.writeAndFlush(filesSizeRequestMessageOut);
             log.info("At the request of the user " + userName + " list of files is sent.");
 
     }

@@ -17,11 +17,15 @@ public class RegisterUserHandler {
 
     public void registerHandle(ChannelHandlerContext ctx, Object msg) {
         RegisterMessage regMsg = (RegisterMessage) msg;
-        if (regMsg.getNameUser().equals(authService.getNickByLoginPass(regMsg.getLogin(), regMsg.getPassUser()))) {
-            ctx.writeAndFlush(new RegisterMessage("none", "", ""));
+        if (regMsg.getNameUser().equals(authService.getNickByLoginPass(regMsg.getLogin(),
+                regMsg.getPassUser()))) {
+            RegisterMessage registerMessage = new RegisterMessage("none", "", "");
+            ctx.writeAndFlush(registerMessage);
         } else {
-            if (authService.registerNewUser(regMsg.getNameUser(), regMsg.getLogin(), regMsg.getPassUser())) {
-                ctx.writeAndFlush(new RegisterMessage("reg", "", ""));
+            if (authService.registerNewUser(regMsg.getNameUser(), regMsg.getLogin(),
+                    regMsg.getPassUser())) {
+                RegisterMessage registerMessage = new RegisterMessage("reg", "", "");
+                ctx.writeAndFlush(registerMessage);
             }
         }
     }
