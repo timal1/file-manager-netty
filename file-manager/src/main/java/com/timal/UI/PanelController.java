@@ -40,7 +40,7 @@ public class PanelController implements Initializable {
         fileTypeColumn.setPrefWidth(24);
 
         TableColumn<FileInfoMessage, String> fileNameColumn = new TableColumn<>("Name");
-        fileNameColumn.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getFileName()));
+        fileNameColumn.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getFilename()));
         fileNameColumn.setPrefWidth(240);
 
         TableColumn<FileInfoMessage, Long> fileSizeColumn = new TableColumn<>("Size");
@@ -83,7 +83,7 @@ public class PanelController implements Initializable {
             @Override
             public void handle(MouseEvent event) {
                 if (event.getClickCount() == 2) {
-                    Path path = Paths.get(pathField.getText()).resolve(filesTable.getSelectionModel().getSelectedItem().getFileName());
+                    Path path = Paths.get(pathField.getText()).resolve(filesTable.getSelectionModel().getSelectedItem().getFilename());
                     if (Files.isDirectory(path)) {
                         updateList(path);
                     }
@@ -113,7 +113,7 @@ public class PanelController implements Initializable {
         if (!filesTable.isFocused()) {
             return null;
         }
-        return filesTable.getSelectionModel().getSelectedItem().getFileName();
+        return filesTable.getSelectionModel().getSelectedItem().getFilename();
     }
 
     public void updateList(Path path) {

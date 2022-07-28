@@ -43,7 +43,7 @@ public class PanelControllerServer implements Initializable {
         fileTypeColumn.setPrefWidth(24);
 
         TableColumn<FileInfoMessage, String> fileNameColumn = new TableColumn<>("Name");
-        fileNameColumn.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getFileName()));
+        fileNameColumn.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getFilename()));
         fileNameColumn.setPrefWidth(240);
 
         TableColumn<FileInfoMessage, Long> fileSizeColumn = new TableColumn<>("Size");
@@ -105,7 +105,7 @@ public class PanelControllerServer implements Initializable {
         if (!filesTable.isFocused()) {
             return null;
         }
-        return filesTable.getSelectionModel().getSelectedItem().getFileName();
+        return filesTable.getSelectionModel().getSelectedItem().getFilename();
     }
 
     public void updateList(List<FileInfoMessage> fileInfoMessages, String pathName) {

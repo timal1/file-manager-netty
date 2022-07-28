@@ -10,6 +10,9 @@ public class FileListMessage extends AbstractMessage {
     private List<FileInfoMessage> listFiles;
     private String pathName;
 
+    public FileListMessage() {
+    }
+
     public FileListMessage(String pathName) {
         this.pathName = pathName;
     }

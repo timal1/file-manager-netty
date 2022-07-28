@@ -189,7 +189,7 @@ public class Controller implements Initializable {
             if (file != null) {
                 long sizeStream = serverPC.getFileList()
                         .stream()
-                        .map((p) -> p.getFileName())
+                        .map((p) -> p.getFilename())
                         .filter((p) -> p.equals(file.getName()))
                         .count();
                 fileWorker.working(file, this::setVisibleLoadInfoFile, sizeStream > 0,
@@ -234,7 +234,7 @@ public class Controller implements Initializable {
             if (file != null) {
                 long sizeStream = serverPC.getFileList()
                         .stream()
-                        .map((p) -> p.getFileName())
+                        .map((p) -> p.getFilename())
                         .filter((p) -> p.equals(file.getName()))
                         .count();
                 fileWorker.working(file, this::setVisibleLoadInfoFile, sizeStream > 0,
