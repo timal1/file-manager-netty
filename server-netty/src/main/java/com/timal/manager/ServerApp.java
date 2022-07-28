@@ -13,9 +13,7 @@ import lombok.extern.log4j.Log4j2;
 public class ServerApp {
 
     private static final int PORT = 8181;
-
     private static AuthService authService = new AuthServiceBD();
-
     public static void main(String[] args) {
         EventLoopGroup bossGroup = new NioEventLoopGroup(2);
         EventLoopGroup workerGroup = new NioEventLoopGroup();
